@@ -1,0 +1,31 @@
+INFO  2017-05-29 05:25:15,072   162ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/29/2017 05:25:15 >>>>>>
+INFO  2017-05-29 05:25:15,637   727ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/29/2017 05:25:15 >>>>>>
+INFO  2017-05-29 05:25:59,554 44644ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-29 05:29:24,440 249530ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-29 05:38:00,105   113ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/29/2017 05:38:00 >>>>>>
+INFO  2017-05-29 05:38:01,343  1350ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/29/2017 05:38:01 >>>>>>
+INFO  2017-05-29 05:38:01,828  1836ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/29/2017 05:38:01
+INFO  2017-05-29 05:38:15,367 15374ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-29 05:40:11,024 131032ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-29 05:43:28,840 328848ms PortalUserController   MoveNext           - Reset URL:http://localhost:21934//Portal/Account/ResetPassword?userId=2&code=tziZwc2c%2FQTP4qK8Qnanyoem6DNV64zWW5fFQCWio0nRpc%2BPAZgJ4WJYXtHTP99vDO4z8Xqw57z0r7TDqi0Dm%2BpUSTsr7slRojpMc6e47bD4qQgPVeFYK%2BSFCtiha8fLc5u1Q3cC4gc0RgjMv%2FPPmg%3D%3D
+INFO  2017-05-29 05:43:39,577 339584ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-29 05:51:41,447   110ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/29/2017 05:51:41 >>>>>>
+INFO  2017-05-29 05:51:42,505  1168ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/29/2017 05:51:42 >>>>>>
+INFO  2017-05-29 05:51:43,112  1775ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/29/2017 05:51:43
+INFO  2017-05-29 05:51:43,113  1776ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-29 12:35:36,185   125ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/29/2017 12:35:36 >>>>>>
+INFO  2017-05-29 12:35:41,072  5011ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/29/2017 12:35:41 >>>>>>
+INFO  2017-05-29 12:35:42,976  6915ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/29/2017 12:35:42
+INFO  2017-05-29 12:36:57,351 81290ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-29 12:38:17,447    99ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/29/2017 12:38:17 >>>>>>
+INFO  2017-05-29 12:38:18,511  1162ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/29/2017 12:38:18 >>>>>>
+INFO  2017-05-29 12:38:19,003  1654ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/29/2017 12:38:19
+INFO  2017-05-29 12:38:21,040  3691ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-29 13:06:01,404    96ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/29/2017 13:06:01 >>>>>>
+INFO  2017-05-29 13:06:02,585  1276ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/29/2017 13:06:02 >>>>>>
+INFO  2017-05-29 13:06:03,240  1931ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/29/2017 13:06:03
+INFO  2017-05-29 13:07:05,037 63729ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-29 13:08:36,307    89ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/29/2017 13:08:36 >>>>>>
+INFO  2017-05-29 13:08:37,330  1111ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/29/2017 13:08:37 >>>>>>
+INFO  2017-05-29 13:08:37,828  1610ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/29/2017 13:08:37
+INFO  2017-05-29 13:09:12,436 36217ms PortalUserController   Index              - <<< In Portal User Page >>>

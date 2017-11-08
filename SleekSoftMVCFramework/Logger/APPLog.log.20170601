@@ -1,0 +1,3 @@
+INFO  2017-06-01 05:50:49,296   128ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 06/01/2017 05:50:49 >>>>>>
+INFO  2017-06-01 05:50:51,128  1959ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 06/01/2017 05:50:51 >>>>>>
+INFO  2017-06-01 05:50:51,962  2793ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 06/01/2017 05:50:51

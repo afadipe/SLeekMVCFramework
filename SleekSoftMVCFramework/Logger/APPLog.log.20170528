@@ -1,0 +1,54 @@
+INFO  2017-05-28 16:06:10,176   180ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:06:10 >>>>>>
+INFO  2017-05-28 16:06:14,259  4263ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:06:14 >>>>>>
+INFO  2017-05-28 16:06:18,111  8114ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 16:06:18
+INFO  2017-05-28 16:20:24,233   141ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:20:24 >>>>>>
+INFO  2017-05-28 16:20:24,789   697ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:20:24 >>>>>>
+INFO  2017-05-28 16:20:26,067  1975ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 16:20:26
+INFO  2017-05-28 16:22:09,052   124ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:22:09 >>>>>>
+INFO  2017-05-28 16:22:09,556   628ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:22:09 >>>>>>
+INFO  2017-05-28 16:22:10,682  1754ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 16:22:10
+INFO  2017-05-28 16:25:11,969    92ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:25:11 >>>>>>
+INFO  2017-05-28 16:25:13,120  1242ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:25:13 >>>>>>
+INFO  2017-05-28 16:25:13,669  1792ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 16:25:13
+INFO  2017-05-28 16:26:58,488    98ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:26:58 >>>>>>
+INFO  2017-05-28 16:26:59,538  1148ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:26:59 >>>>>>
+INFO  2017-05-28 16:26:59,984  1594ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 16:26:59
+INFO  2017-05-28 16:35:16,827    86ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:35:16 >>>>>>
+INFO  2017-05-28 16:35:18,010  1268ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:35:18 >>>>>>
+INFO  2017-05-28 16:35:18,512  1771ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 16:35:18
+INFO  2017-05-28 16:41:59,187   162ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:41:59 >>>>>>
+INFO  2017-05-28 16:41:59,820   795ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:41:59 >>>>>>
+INFO  2017-05-28 16:42:15,949   137ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:42:15 >>>>>>
+INFO  2017-05-28 16:42:16,491   679ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:42:16 >>>>>>
+INFO  2017-05-28 16:42:17,865  2053ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 16:42:17
+INFO  2017-05-28 16:44:35,764   108ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:44:35 >>>>>>
+INFO  2017-05-28 16:44:37,011  1354ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:44:37 >>>>>>
+INFO  2017-05-28 16:44:37,538  1882ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 16:44:37
+INFO  2017-05-28 16:47:54,595 198938ms PortalRoleController   Index              - <<< In Portal Role Page >>>
+INFO  2017-05-28 16:50:16,290   157ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 16:50:16 >>>>>>
+INFO  2017-05-28 16:50:17,007   873ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 16:50:17 >>>>>>
+INFO  2017-05-28 16:50:18,479  2345ms PortalRoleController   Index              - <<< In Portal Role Page >>>
+INFO  2017-05-28 17:02:54,872   105ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 17:02:54 >>>>>>
+INFO  2017-05-28 17:02:55,951  1183ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 17:02:55 >>>>>>
+INFO  2017-05-28 17:02:56,451  1684ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 17:02:56
+INFO  2017-05-28 17:04:35,606 100838ms PortalRoleController   Index              - <<< In Portal Role Page >>>
+INFO  2017-05-28 23:25:36,967   100ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 23:25:36 >>>>>>
+INFO  2017-05-28 23:25:38,090  1222ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 23:25:38 >>>>>>
+INFO  2017-05-28 23:25:38,629  1762ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 23:25:38
+INFO  2017-05-28 23:28:33,811   102ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 23:28:33 >>>>>>
+INFO  2017-05-28 23:28:34,503   794ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 23:28:34 >>>>>>
+INFO  2017-05-28 23:28:35,609  1900ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 23:28:35
+INFO  2017-05-28 23:29:01,112 27403ms PortalUserController   Index              - <<< In Portal User Page >>>
+ERROR 2017-05-28 23:29:01,257 27548ms PortalUserController   Index              - System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at SleekSoftMVCFramework.ViewModel.UserViewModel.EntityToModels(ApplicationUser dbmodel) in C:\Users\afadipe\Documents\Visual Studio 2015\Projects\SleekSoftMVCFramework\SleekSoftMVCFramework\ViewModel\UserViewModel.cs:line 87
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at SleekSoftMVCFramework.Areas.Portal.Controllers.PortalUserController.Index() in C:\Users\afadipe\Documents\Visual Studio 2015\Projects\SleekSoftMVCFramework\SleekSoftMVCFramework\Areas\Portal\Controllers\PortalUserController.cs:line 51
+INFO  2017-05-28 23:29:44,913 71204ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-05-28 23:33:42,771   100ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 05/28/2017 23:33:42 >>>>>>
+INFO  2017-05-28 23:33:43,874  1202ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 05/28/2017 23:33:43 >>>>>>
+INFO  2017-05-28 23:33:44,400  1729ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 05/28/2017 23:33:44
+INFO  2017-05-28 23:33:44,401  1730ms PortalUserController   Index              - <<< In Portal User Page >>>

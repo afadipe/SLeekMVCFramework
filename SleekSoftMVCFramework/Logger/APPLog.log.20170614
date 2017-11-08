@@ -1,0 +1,41 @@
+INFO  2017-06-14 19:55:19,524   117ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 06/14/2017 19:55:19 >>>>>>
+INFO  2017-06-14 19:55:21,436  2028ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 06/14/2017 19:55:21 >>>>>>
+INFO  2017-06-14 19:55:24,056  4648ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 06/14/2017 19:55:24
+INFO  2017-06-14 20:12:40,651   141ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 06/14/2017 20:12:40 >>>>>>
+INFO  2017-06-14 20:12:41,709  1198ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 06/14/2017 20:12:41 >>>>>>
+INFO  2017-06-14 20:12:42,215  1705ms meworkConfigController Index              - SleekSoft MVC Framework Config checked @ : 06/14/2017 20:12:42
+INFO  2017-06-14 20:23:10,445 629934ms PortalRoleController   Index              - <<< In Portal Role Page >>>
+INFO  2017-06-14 20:23:34,997 654487ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-06-14 20:26:43,434 842923ms PortalRoleController   Index              - <<< In Portal Role Page >>>
+INFO  2017-06-14 20:28:26,796 946285ms PortalRoleController   Index              - <<< In Portal Role Page >>>
+INFO  2017-06-14 20:32:56,979 1216468ms PortalRoleController   Index              - <<< In Portal Role Page >>>
+INFO  2017-06-14 20:33:26,923 1246413ms PortalUserController   Index              - <<< In Portal User Page >>>
+INFO  2017-06-14 20:58:43,367    98ms                        Application_Start  -  <<<< Staring ::: SleekSoft Framework checking Startup Config Setting @ : 06/14/2017 20:58:43 >>>>>>
+INFO  2017-06-14 20:58:44,452  1182ms                        Application_Start  -  <<<< Ending ::: SleekSoft Framework Startup Config Setting ok @ : 06/14/2017 20:58:44 >>>>>>
+INFO  2017-06-14 20:59:17,237 33968ms PortalUserController   Index              - <<< In Portal User Page >>>
+ERROR 2017-06-14 21:01:01,499 138229ms PortalUserController   MoveNext           - System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'SpDeleteUserRoleByUserId'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<NonQuery>b__0(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.NonQuery(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteNonQuery()
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass59.<ExecuteStoreCommand>b__58()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass59.<ExecuteStoreCommand>b__57()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteStoreCommand(TransactionalBehavior transactionalBehavior, String commandText, Object[] parameters)
+   at System.Data.Entity.Internal.InternalContext.ExecuteSqlCommand(TransactionalBehavior transactionalBehavior, String sql, Object[] parameters)
+   at System.Data.Entity.Database.ExecuteSqlCommand(TransactionalBehavior transactionalBehavior, String sql, Object[] parameters)
+   at System.Data.Entity.Database.ExecuteSqlCommand(String sql, Object[] parameters)
+   at SleekSoftMVCFramework.Repository.CoreRepositories.RepositoryQuery`2.ExecuteStoreprocedure(String storedProcedureNameAndParameterPlaceholder, Object[] parameters) in C:\Users\afadipe\Documents\Visual Studio 2015\Projects\SleekSoftMVCFramework\SleekSoftMVCFramework.Repository\CoreRepositories\RepositoryQuery.cs:line 219
+   at SleekSoftMVCFramework.Areas.Portal.Controllers.PortalUserController.<Edit>d__12.MoveNext() in C:\Users\afadipe\Documents\Visual Studio 2015\Projects\SleekSoftMVCFramework\SleekSoftMVCFramework\Areas\Portal\Controllers\PortalUserController.cs:line 261
+ClientConnectionId:05b264ef-7491-41da-9aff-a9c382fdc148
+Error Number:2812,State:62,Class:16

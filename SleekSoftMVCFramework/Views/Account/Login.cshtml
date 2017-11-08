@@ -1,0 +1,68 @@
+﻿@using SleekSoftMVCFramework.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_APPLoginPartial.cshtml";
+}
+
+
+
+
+
+@Html.Partial("_ToastrViewHeader")
+
+
+<!-- /.login-logo -->
+<div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session</p>
+
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+
+        @Html.AntiForgeryToken()
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group has-feedback">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group has-feedback">
+
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox icheck">
+                    <label>
+                        @Html.CheckBoxFor(m => m.RememberMe)Remember Me
+
+                    </label>
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            </div>
+            <!-- /.col -->
+        </div>
+    }
+
+    <!-- /.social-auth-links -->
+    <a href="@Url.Action("ForgotPassword","Account")">I forgot my password</a>
+</div>
+<!-- /.login-box-body -->
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
