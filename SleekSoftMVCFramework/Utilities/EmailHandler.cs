@@ -60,7 +60,7 @@ namespace SleekSoftMVCFramework.Utilities
                 //};
 
                 SmtpClient smtpClient = new SmtpClient("smtp.sendgrid.net", Convert.ToInt32(587));
-                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("sendgridEmail", "sendgridPassword");
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("sendgridusername", "sendgridPassword");
                 smtpClient.Credentials = credentials;
 
                 smtpClient.Send(message);
