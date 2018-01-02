@@ -99,7 +99,8 @@ namespace SleekSoftMVCFramework.Controllers
                 ApplicationUser usermodel = UserManager.Users.FirstOrDefault(m => m.UserName.Trim() == model.Email);
                 if (usermodel != null)
                 {
-                    string USERPERMISSION = SetUserPermissions(usermodel.Id);
+                    //if this application will be using permission please uncomment this line
+                    //string USERPERMISSION = SetUserPermissions(usermodel.Id);
                     var userIdentity = await UserManager.CreateIdentityAsync(usermodel, DefaultAuthenticationTypes.ApplicationCookie);
                     userIdentity.AddClaim(new Claim("FullName", usermodel.FullName));
                     userIdentity.AddClaim(new Claim("Email", usermodel.Email));
@@ -116,9 +117,7 @@ namespace SleekSoftMVCFramework.Controllers
                 switch (result)
                 {
                     case SignInStatus.Success:
-
-                       
-
+                        
                         if (User.Identity.GetFullName() == string.Empty)
                         {
                             await usermodel.GenerateUserIdentityAsync(UserManager);
