@@ -6,6 +6,8 @@ using SleekSoftMVCFramework.Data.IdentityModel;
 using SleekSoftMVCFramework.Repository;
 using SleekSoftMVCFramework.Repository.CoreRepositories;
 using SleekSoftMVCFramework.Data.IdentityService;
+using SleekSoftMVCFramework.Data.Entities;
+using System.Data.Entity.Validation;
 
 namespace SleekSoftMVCFramework.Utilities
 {
@@ -14,9 +16,20 @@ namespace SleekSoftMVCFramework.Utilities
         private readonly IRepositoryQuery<Permission,long> _permissionQuery;
         private readonly IRepositoryQuery<ApplicationRole, long> _applicationRoleQuery;
         private readonly ApplicationRoleManager _applicationRoleManager;
-        public Utility(IRepositoryQuery<Permission, long> permissionQuery, IRepositoryQuery<ApplicationRole, long> applicationRoleQuery, ApplicationRoleManager applicationRoleManager)
+        private readonly IRepositoryQuery<EmailTemplate, long> _emailTemplateRepositoryQuery;
+        private readonly IRepositoryQuery<EmailToken, long> _emailTokenRepositoryQuery;
+        private readonly IRepositoryCommand<EmailLog, long> _emailLogRepositoryCommand;
+        public Utility(IRepositoryQuery<Permission, long> permissionQuery, 
+            IRepositoryQuery<ApplicationRole, long> applicationRoleQuery,
+              IRepositoryQuery<EmailTemplate, long> emailTemplateRepositoryQuery,
+           IRepositoryQuery<EmailToken, long> emailTokenRepositoryQuery,
+            IRepositoryCommand<EmailLog, long> emailLogRepositoryCommand,
+            ApplicationRoleManager applicationRoleManager)
         {
             _permissionQuery = permissionQuery;
+            _emailTemplateRepositoryQuery = emailTemplateRepositoryQuery;
+            _emailTokenRepositoryQuery = emailTokenRepositoryQuery;
+            _emailLogRepositoryCommand = emailLogRepositoryCommand;
             _applicationRoleManager = applicationRoleManager;
             _applicationRoleQuery = applicationRoleQuery;
         }
@@ -46,71 +59,117 @@ namespace SleekSoftMVCFramework.Utilities
         }
 
 
-        public void SendPasswordResetEmail(ApplicationUser mUser, string mtoken, string resetUrl)
+        public void SendPasswordResetEmail(ApplicationUser mUser, string resetUrl)
         {
             try
             {
-                //EmailTemplate emailFormat = _emailTemplateRepositoryRepositoryQuery.GetByCode("F_PASSWORD");
-                //List<EmailToken> tokenCol = _emailTokenRepositoryQuery.GetAllList(m => m.EmailCode == emailFormat.Code).ToList();
-                //foreach (var token in tokenCol)
-                //{
-                //    if (token.Token.Equals("{Name}"))
-                //    {
-                //        token.PreviewText = mUser.FirstName + " " + mUser.LastName;
-                //    }
-                //    else if (token.Token.Equals("{Email}"))
-                //    {
-                //        token.PreviewText = mUser.Email ?? string.Empty;
-                //    }
-                //    else if (token.Token.Equals("{PFNumber}"))
-                //    {
-                //        token.PreviewText = mUser.PFNo ?? string.Empty;
-                //    }
-                //    else if (token.Token.Equals("{Url}"))
-                //    {
-                //        ////we need to get portalUrl bcos of live n local host will both b different
-                //        //string portalUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + "/";
-                //        //string mPre = portalUrl + resetUrl;
-                //        //string URL = string.Format(mPre, mtoken);
-                //        token.PreviewText = resetUrl;
-                //    }
-                //}
-                //try
-                //{
-                //    EmailLog mlog = new EmailLog();
-                //    mlog.BCC = "a@gmail.com";
-                //    mlog.CC = "a@gmail.com";
-                //    mlog.Receiver = mUser.Email;
-                //    mlog.Sender = GetAppSetting("EmailSender");
-                //    mlog.Subject = "Password reset notification";
-                //    mlog.MessageBody = GeneratePreviewHTML(emailFormat.Body, tokenCol);
-                //    mlog.ApplicationID = GetIntAppSetting("EmailEngineAppId");
-                //    mlog.DateCreated = mlog.DateToSend = DateTime.Now;
-                //    mlog.IsSent = mlog.HasAttachment = false;
-                //    mlog.EmailAttachments = new List<EmailAttachment>();
-                //    _EmailEngineModel.EmailLogs.Add(mlog);
-                //    _EmailEngineModel.SaveChanges();
-                //}
-                //catch (DbEntityValidationException filterContext)
-                //{
-                //    if (typeof(DbEntityValidationException) == filterContext.GetType())
-                //    {
-                //        foreach (var validationErrors in filterContext.EntityValidationErrors)
-                //        {
-                //            foreach (var validationError in validationErrors.ValidationErrors)
-                //            {
-                //                System.Diagnostics.Debug.WriteLine("Property: {0} Error: {1}",
-                //                    validationError.PropertyName,
-                //                    validationError.ErrorMessage);
+                EmailTemplate emailFormat = _emailTemplateRepositoryQuery.GetAllList(m => m.Code == "F_PASSWORD").SingleOrDefault();
+                List<EmailToken> tokenCol = _emailTokenRepositoryQuery.GetAllList(m => m.EmailCode == emailFormat.Code).ToList();
+                foreach (var token in tokenCol)
+                {
+                    if (token.Token.Equals("{Name}"))
+                    {
+                        token.PreviewText = mUser.FirstName + " " + mUser.LastName;
+                    }
+                    else if (token.Token.Equals("{Email}"))
+                    {
+                        token.PreviewText = mUser.Email ?? string.Empty;
+                    }
+                    else if (token.Token.Equals("{Url}"))
+                    {
+                        token.PreviewText = resetUrl;
+                    }
+                }
+                try
+                {
+                    EmailLog mlog = new EmailLog();
+                    mlog.Receiver = mUser.Email;
+                    mlog.Sender = ExtentionUtility.GetAppSetting("MailFrom");
+                    mlog.Subject = "Password Reset Notification";
+                    mlog.MessageBody = ExtentionUtility.GeneratePreviewHTML(emailFormat.Body, tokenCol);
+                    mlog.DateCreated = mlog.DateToSend = DateTime.Now;
+                    mlog.IsSent = mlog.HasAttachment = false;
+                    mlog.EmailAttachments = new List<EmailAttachment>();
+                    _emailLogRepositoryCommand.Insert(mlog);
+                    _emailLogRepositoryCommand.SaveChanges();
+                }
+                catch (DbEntityValidationException filterContext)
+                {
+                    if (typeof(DbEntityValidationException) == filterContext.GetType())
+                    {
+                        foreach (var validationErrors in filterContext.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                System.Diagnostics.Debug.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
 
-                //            }
-                //        }
-                //    }
-                //    throw;
-                //}
+                            }
+                        }
+                    }
+                    throw;
+                }
 
             }
-            catch (Exception)
+            catch
+            {
+
+                throw;
+            }
+        }
+
+
+        public void SendWelcomeAndPasswordResetEmail(ApplicationUser mUser, string resetUrl)
+        {
+            try
+            {
+                EmailTemplate emailFormat = _emailTemplateRepositoryQuery.GetAllList(m => m.Code == "Welc").SingleOrDefault();
+                List<EmailToken> tokenCol = _emailTokenRepositoryQuery.GetAllList(m => m.EmailCode == emailFormat.Code).ToList();
+                foreach (var token in tokenCol)
+                {
+                    if (token.Token.Equals("{UserName}"))
+                    {
+                        token.PreviewText = mUser.UserName;
+                    }
+                    else if (token.Token.Equals("{Email}"))
+                    {
+                        token.PreviewText = mUser.Email ?? string.Empty;
+                    }
+                    else if (token.Token.Equals("{Url}"))
+                    {
+                        token.PreviewText = resetUrl;
+                    }
+                }
+                try
+                {
+                    EmailLog mlog = new EmailLog();
+                    mlog.Receiver = mUser.Email;
+                    mlog.Sender = ExtentionUtility.GetAppSetting("MailFrom");
+                    mlog.Subject = "Welcome to SMF Portal";
+                    mlog.MessageBody = ExtentionUtility.GeneratePreviewHTML(emailFormat.Body, tokenCol);
+                    mlog.DateCreated = mlog.DateToSend = DateTime.Now;
+                    mlog.IsSent = mlog.HasAttachment = false;
+                    mlog.EmailAttachments = new List<EmailAttachment>();
+                    _emailLogRepositoryCommand.Insert(mlog);
+                    _emailLogRepositoryCommand.SaveChanges();
+                }
+                catch (DbEntityValidationException filterContext)
+                {
+                    if (typeof(DbEntityValidationException) == filterContext.GetType())
+                    {
+                        foreach (var validationErrors in filterContext.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                System.Diagnostics.Debug.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+
+                            }
+                        }
+                    }
+                    throw;
+                }
+
+            }
+            catch
             {
 
                 throw;

@@ -33,14 +33,18 @@ namespace SleekSoftMVCFramework.Controllers
         private readonly IRepositoryQuery<Application,int> _applicationQuery;
         private readonly IRepositoryCommand<ApplicationUserPasswordHistory, long> _passwordCommand;
         private readonly ILog _log;
+        private readonly Utility _utility;
+
         //ApplicationUserManager userManager, ApplicationSignInManager signInManager, 
-        public AccountController(IRepositoryQuery<Application, int> applicationQuery, IRepositoryQuery<ApplicationUser, long>  applicationUser, IRepositoryCommand<ApplicationUserPasswordHistory, long> passwordCommand, ILog log)
+        public AccountController(IRepositoryQuery<Application, int> applicationQuery, IRepositoryQuery<ApplicationUser, long>  applicationUser, 
+            IRepositoryCommand<ApplicationUserPasswordHistory, long> passwordCommand, Utility utility, ILog log)
         {
             //UserManager = userManager;
             //_signInManager = signInManager;
             _applicationUser = applicationUser;
             _passwordCommand = passwordCommand;
             _applicationQuery=applicationQuery;
+            _utility = utility;
             _log = log;
         }
 
@@ -100,7 +104,6 @@ namespace SleekSoftMVCFramework.Controllers
                     userIdentity.AddClaim(new Claim("FullName", usermodel.FullName));
                     userIdentity.AddClaim(new Claim("Email", usermodel.Email));
                     userIdentity.AddClaim(new Claim("DateCreated", usermodel.DateCreated.ToString("MM/dd/yyyy")));
-                    userIdentity.AddClaim(new Claim("UserPermission", USERPERMISSION));
                     var listIdentity = new List<ClaimsIdentity>();
                     listIdentity.Add(userIdentity);
                     ClaimsPrincipal c = new ClaimsPrincipal(listIdentity);
@@ -109,7 +112,7 @@ namespace SleekSoftMVCFramework.Controllers
 
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, change to shouldLockout: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
                 switch (result)
                 {
                     case SignInStatus.Success:
@@ -402,15 +405,15 @@ namespace SleekSoftMVCFramework.Controllers
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var user = await UserManager.FindByNameAsync(model.Email);
-                    if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                    var user = await UserManager.FindByEmailAsync(model.Email);
+                    if (user == null)
                     {
                         // Don't reveal that the user does not exist or is not confirmed
                         return View("ForgotPasswordConfirmation");
@@ -419,8 +422,21 @@ namespace SleekSoftMVCFramework.Controllers
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                    string portalUrl = System.Web.HttpContext.Current.Request.Url.Scheme + "://" + System.Web.HttpContext.Current.Request.Url.Authority + System.Web.HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + "/";
+
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userCode = user.Id.EncryptID(), code = code });
-                    // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string mPre = portalUrl + callbackUrl;
+                    _log.Info(string.Format("Reset URL:{0}", mPre));
+
+                    try
+                    {
+                        _utility.SendPasswordResetEmail(user, mPre);
+                    }
+                    catch
+                    {
+                    }
+                  
+
                     return RedirectToAction("ForgotPasswordConfirmation", "Account");
                 }
 

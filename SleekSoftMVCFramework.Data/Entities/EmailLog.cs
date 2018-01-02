@@ -16,7 +16,7 @@ namespace SleekSoftMVCFramework.Data.Entities
         [Required]
         [StringLength(1000)]
         public string Receiver { get; set; }
-        [Required]
+       
         [StringLength(1000)]
         public string CC { get; set; }
 

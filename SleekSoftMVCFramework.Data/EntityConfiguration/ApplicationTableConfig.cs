@@ -16,11 +16,10 @@ namespace SleekSoftMVCFramework.Data.EntityConfiguration
 
 
             this.ToTable(tableName: "Application");
-            this.Property(m => m.ApplicationName).IsOptional();
+            this.Property(m => m.ApplicationName).IsRequired();
             this.Property(m => m.Description).IsOptional();
-            //Entity
+            this.Property(m => m.TermsAndConditions).IsOptional();
             this.Property(m => m.HasAdminUserConfigured).IsRequired();
-            this.Property(m => m.Description).IsRequired();
             this.Property(m => m.IsActive).IsRequired();
             this.Property(m => m.IsDeleted).IsRequired();
             this.Property(m => m.DateCreated).IsRequired();

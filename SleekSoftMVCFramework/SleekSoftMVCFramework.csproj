@@ -113,14 +113,6 @@
       <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SleekSoftMVCFramework.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\SleekSoftMVCFramework.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="SleekSoftMVCFramework.Repository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\SleekSoftMVCFramework.Repository.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -334,8 +326,6 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="dll\LinqKit.dll" />
-    <Content Include="dll\SleekSoftMVCFramework.Data.dll" />
-    <Content Include="dll\SleekSoftMVCFramework.Repository.dll" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\fontawesome-webfonte0a5.svg" />
@@ -506,6 +496,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SleekSoftMVCFramework.Data\SleekSoftMVCFramework.Data.csproj">
+      <Project>{806df524-ccef-4faa-850b-dc2f2e598f9d}</Project>
+      <Name>SleekSoftMVCFramework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SleekSoftMVCFramework.Repository\SleekSoftMVCFramework.Repository.csproj">
+      <Project>{cf1aacac-6094-434e-a434-16df21cc6b3e}</Project>
+      <Name>SleekSoftMVCFramework.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

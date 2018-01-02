@@ -7,13 +7,13 @@ namespace SleekSoftMVCFramework.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class update_appRole_tbl : IMigrationMetadata
+    public sealed partial class add_framework_default_tbl : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update_appRole_tbl));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(add_framework_default_tbl));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705282210333_update_appRole_tbl"; }
+            get { return "201801021459329_add_framework_default_tbl"; }
         }
         
         string IMigrationMetadata.Source

@@ -147,13 +147,9 @@
     <Compile Include="IdentityService\ApplicationUserStore.cs" />
     <Compile Include="IdentityService\Extensions\IdentityExtension.cs" />
     <Compile Include="LibraryContainer\LoggingService\LoggerModule.cs" />
-    <Compile Include="Migrations\201705281425122_add_aspnet_tbl.cs" />
-    <Compile Include="Migrations\201705281425122_add_aspnet_tbl.Designer.cs">
-      <DependentUpon>201705281425122_add_aspnet_tbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705282210333_update_appRole_tbl.cs" />
-    <Compile Include="Migrations\201705282210333_update_appRole_tbl.Designer.cs">
-      <DependentUpon>201705282210333_update_appRole_tbl.cs</DependentUpon>
+    <Compile Include="Migrations\201801021459329_add_framework_default_tbl.cs" />
+    <Compile Include="Migrations\201801021459329_add_framework_default_tbl.Designer.cs">
+      <DependentUpon>201801021459329_add_framework_default_tbl.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,16 +159,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705281425122_add_aspnet_tbl.resx">
-      <DependentUpon>201705281425122_add_aspnet_tbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705282210333_update_appRole_tbl.resx">
-      <DependentUpon>201705282210333_update_appRole_tbl.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801021459329_add_framework_default_tbl.resx">
+      <DependentUpon>201801021459329_add_framework_default_tbl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

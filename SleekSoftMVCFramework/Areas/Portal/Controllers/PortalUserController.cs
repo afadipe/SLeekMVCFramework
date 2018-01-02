@@ -123,7 +123,12 @@ namespace SleekSoftMVCFramework.Areas.Portal.Controllers
                             _log.Info(string.Format("Reset URL:{0}", mPre));
                             if (!String.IsNullOrEmpty(usermodel.Email))
                             {
-                                _utility.SendPasswordResetEmail(usermodel, code, callbackUrl);
+                                try
+                                {
+                                    _utility.SendWelcomeAndPasswordResetEmail(usermodel, mPre);
+                                }
+                                catch  { }
+                                
                             }
 
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SleekSoftMVCFramework.Data.Entities;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Web.Http;
@@ -37,7 +39,7 @@ namespace SleekSoftMVCFramework.Utilities
             {
                 return System.Configuration.ConfigurationManager.AppSettings[key].ToString();
             }
-            catch (Exception ex)
+            catch 
             {
                 return "";
             }
@@ -49,7 +51,7 @@ namespace SleekSoftMVCFramework.Utilities
             {
                 return int.Parse(System.Configuration.ConfigurationManager.AppSettings[key].ToString());
             }
-            catch (Exception ex)
+            catch 
             {
                 return 2;
             }
@@ -74,6 +76,19 @@ namespace SleekSoftMVCFramework.Utilities
             return HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
         }
 
+        public static string GeneratePreviewHTML(string htmlcode, List<EmailToken> lstToken)
+        {
+            try
+            {
+                foreach (EmailToken item in lstToken)
+                {
+                    htmlcode = htmlcode.Replace(item.Token, item.PreviewText);
+                }
+            }
+            catch { }
+            return htmlcode;
+        }
+
         public static String EncryptID(this Int64 ID)
         {
             try
@@ -83,7 +98,7 @@ namespace SleekSoftMVCFramework.Utilities
                 EcryptedApplicantID = EcryptedApplicantID.Replace("\\", "`");
                 return EcryptedApplicantID;
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }
@@ -96,7 +111,7 @@ namespace SleekSoftMVCFramework.Utilities
                 String Ecrypted = CryptoClass.EncryptPlainTextToCipherText(Text);
                 return Ecrypted;
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }
@@ -111,7 +126,7 @@ namespace SleekSoftMVCFramework.Utilities
                 Int64 DecryptedApplicantID = Convert.ToInt64(CryptoClass.DecryptCipherTextToPlainText(ID));
                 return DecryptedApplicantID;
             }
-            catch (Exception ex)
+            catch 
             {
                 return 0;
             }

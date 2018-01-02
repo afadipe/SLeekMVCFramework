@@ -3,7 +3,7 @@ namespace SleekSoftMVCFramework.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class add_aspnet_tbl : DbMigration
+    public partial class add_framework_default_tbl : DbMigration
     {
         public override void Up()
         {
@@ -28,6 +28,9 @@ namespace SleekSoftMVCFramework.Data.Migrations
                 c => new
                     {
                         AspNetRoleId = c.Long(nullable: false, identity: true),
+                        DateCreated = c.DateTime(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
                         Name = c.String(nullable: false, maxLength: 256),
                     })
                 .PrimaryKey(t => t.AspNetRoleId)
@@ -51,8 +54,8 @@ namespace SleekSoftMVCFramework.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ApplicationName = c.String(),
-                        Description = c.String(nullable: false),
+                        ApplicationName = c.String(nullable: false),
+                        Description = c.String(),
                         TermsAndConditions = c.String(),
                         HasAdminUserConfigured = c.Boolean(nullable: false),
                         DateCreated = c.DateTime(nullable: false),
@@ -140,6 +143,72 @@ namespace SleekSoftMVCFramework.Data.Migrations
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
             CreateTable(
+                "dbo.EmailAttachments",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        EmailLogID = c.Long(nullable: false),
+                        FilePath = c.String(nullable: false),
+                        FileTitle = c.String(maxLength: 50),
+                        DateCreated = c.DateTime(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.EmailLogs", t => t.EmailLogID, cascadeDelete: true)
+                .Index(t => t.EmailLogID);
+            
+            CreateTable(
+                "dbo.EmailLogs",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Sender = c.String(nullable: false, maxLength: 1000),
+                        Receiver = c.String(nullable: false, maxLength: 1000),
+                        CC = c.String(maxLength: 1000),
+                        BCC = c.String(),
+                        Subject = c.String(nullable: false),
+                        MessageBody = c.String(nullable: false),
+                        HasAttachment = c.Boolean(nullable: false),
+                        Retires = c.Int(nullable: false),
+                        IsSent = c.Boolean(nullable: false),
+                        DateSent = c.DateTime(),
+                        DateToSend = c.DateTime(nullable: false),
+                        DateCreated = c.DateTime(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.EmailTemplates",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Name = c.String(),
+                        Code = c.String(),
+                        Body = c.String(),
+                        DateCreated = c.DateTime(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.EmailTokens",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        EmailCode = c.String(),
+                        Token = c.String(),
+                        PreviewText = c.String(),
+                        DateCreated = c.DateTime(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Permission",
                 c => new
                     {
@@ -193,14 +262,17 @@ namespace SleekSoftMVCFramework.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id);
 
-            CreateStoredProcedure("dbo.spFetchUserPermissionAndRole",
-             p => new
-             {
-                 UserId = p.Int()
-             },
-             body:
 
-             @"select p.Name PermissionName,p.Code PermissionCode,r.Name RoleName
+
+
+            CreateStoredProcedure("dbo.spFetchUserPermissionAndRole",
+           p => new
+           {
+               UserId = p.Int()
+           },
+           body:
+
+           @"select p.Name PermissionName,p.Code PermissionCode,r.Name RoleName
                     ,rp.PermissionId,rp.RoleId
                     from [AspNetUsers] e  
                     inner join [AspNetUserRole] ur on e.AspNetUserId=ur.AspNetUserId
@@ -208,7 +280,7 @@ namespace SleekSoftMVCFramework.Data.Migrations
                     inner join [RolePermission] rp on ur.AspNetRoleId=rp.RoleId
                     inner join [Permission] p on rp.PermissionId=p.Id
                     where (e.AspNetUserId =@UserId)"
-         );
+       );
 
 
             CreateStoredProcedure("dbo.spPasswordHistorySelect",
@@ -314,14 +386,39 @@ namespace SleekSoftMVCFramework.Data.Migrations
             left outer join [dbo].[AspNetUsers] e on  a.[UserID]=e.AspNetUserId
             order by a.Id desc");
 
+            CreateStoredProcedure("dbo.SpGetUserRole",
+       p => new
+       {
+           UserId = p.Int(0)
+       },
+       body:
+       @"select  
+	              a.AspNetRoleId RoleId
+                  ,e.[Name] 
+              FROM [dbo].[AspNetUserRole] a
+              inner join [dbo].[AspNetRole] e on  a.[AspNetRoleId]=e.AspNetRoleId
+              where (@UserId=0 or a.AspNetUserId=@UserId)
+              ");
+
+
+            CreateStoredProcedure("dbo.SpDeleteUserRoleByUserId",
+             p => new
+             {
+                 UserId = p.Int(0)
+             },
+             body:
+             @"Delete from AspNetUserRole  where AspNetRoleId=@UserId");
+
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.EmailAttachments", "EmailLogID", "dbo.EmailLogs");
             DropForeignKey("dbo.AspNetUserRole", "AspNetUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogin", "AspNetUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaim", "AspNetUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRole", "AspNetRoleId", "dbo.AspNetRole");
+            DropIndex("dbo.EmailAttachments", new[] { "EmailLogID" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserLogin", new[] { "AspNetUserId" });
             DropIndex("dbo.AspNetUserClaim", new[] { "AspNetUserId" });
@@ -331,6 +428,10 @@ namespace SleekSoftMVCFramework.Data.Migrations
             DropTable("dbo.RolePermission");
             DropTable("dbo.PortalVersion");
             DropTable("dbo.Permission");
+            DropTable("dbo.EmailTokens");
+            DropTable("dbo.EmailTemplates");
+            DropTable("dbo.EmailLogs");
+            DropTable("dbo.EmailAttachments");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.PasswordHistory");
             DropTable("dbo.AspNetUserLogin");
@@ -340,6 +441,8 @@ namespace SleekSoftMVCFramework.Data.Migrations
             DropTable("dbo.AspNetRole");
             DropTable("dbo.ActivityLog");
 
+
+
             DropStoredProcedure("dbo.spFetchUserPermissionAndRole");
             DropStoredProcedure("dbo.spPasswordHistorySelect");
             DropStoredProcedure("dbo.spPasswordHistoryDeleteNonRecentPasswords");
@@ -347,7 +450,8 @@ namespace SleekSoftMVCFramework.Data.Migrations
 
             DropStoredProcedure("dbo.SpGetActivityLog");
             DropStoredProcedure("dbo.SpGetAllActivityLog");
-
+            DropStoredProcedure("dbo.SpGetUserRole");
+            DropStoredProcedure("dbo.SpDeleteUserRoleByUserId");
         }
     }
 }
