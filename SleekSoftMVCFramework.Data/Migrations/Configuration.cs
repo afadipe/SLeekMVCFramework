@@ -23,16 +23,16 @@ namespace SleekSoftMVCFramework.Data.Migrations
             context.PortalVersions.AddOrUpdate(p => p.FrameworkName,
                new PortalVersion
                {
-                   FrameworkName = "VATMVCFramework",
+                   FrameworkName = "SMFFramework",
                    FrameworkDescription = "An MVC Customized Framework built on ASP.Net Identity 2.0 to aid fast application development with built in logger and activitylog",
                    FrameworkVersion = "2.0.0.0",
                    TargetServer = "MSSQL,Postgress,MangoDB,MYSQL",
-                   PackagesUsed = "Microsoft.ASPNET.Identity,Microsoft.OWIN,Log4net,EntityFramework,JQuery DataTable,Select 2,Boostrap,Autofac,Autofac.MVC,Autofac.WebAPI2,CQRS RepositoryPattern",
+                   PackagesUsed = "Microsoft.ASPNET.Identity,Microsoft.OWIN,Log4net,EntityFramework,JQuery DataTable,Select 2,Boostrap,Autofac,Autofac.MVC,Autofac.WebAPI2,CQRS Repository Pattern",
                    DefaultDatabaseEngine = "MSSQL Server",
                    IOC = "Autofac",
                    DateCreated = DateTime.Now,
                    DevelopedBy = "Fadipe Ayobami  || ayfadipe@gmail.com",
-                   UX = "Fadipe Ayobami  || ayfadipe@gmail.com"
+                   UX = "ABDULLAH ALMSAEED  || https://adminlte.io "
                });
 
             base.Seed(context);
